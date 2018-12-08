@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using FunApp.Web.Areas.Identity.Data;
+using FunApp.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

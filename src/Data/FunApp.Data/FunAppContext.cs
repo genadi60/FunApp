@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FunApp.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FunApp.Web.Areas.Identity.Data
+namespace FunApp.Data
 {
     public class FunAppContext : IdentityDbContext<FunAppUser>
     {
