@@ -1,6 +1,4 @@
-using System;
-
-namespace FunnApp.Web.Models
+namespace FunApp.Web.Models
 {
     public class ErrorViewModel
     {
