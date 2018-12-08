@@ -1,2 +1,2 @@
-# FunnApp
+# FunApp
 Project Architecture Creating
