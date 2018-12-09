@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
+using AngleSharp;
+using AngleSharp.Parser.Html;
 using CommandLine;
 using FunApp.Data;
 using FunApp.Data.Models;
@@ -10,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace Sandbox
 {
@@ -27,27 +33,65 @@ namespace Sandbox
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<FunAppContext>();
                 dbContext.Database.Migrate();
-            ////    FunAppContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
-           }
+                serviceProvider = serviceScope.ServiceProvider;
+                SandboxCode(serviceProvider);
+                ////    FunAppContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
+            }
             
             using (var serviceScope = serviceProvider.CreateScope())
             {
-                serviceProvider = serviceScope.ServiceProvider;
-
-                Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
-                    (SandboxOptions opts) => SandboxCode(opts, serviceProvider),
-                    _ => 255);
+                
+                //Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
+                //    (SandboxOptions opts) => SandboxCode(opts, serviceProvider),
+                //    _ => 255);
             }
         }
 
-        private static int SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
+        private static void SandboxCode(IServiceProvider serviceProvider)
         {
-            var sw = Stopwatch.StartNew();
-            ////var settingsService = serviceProvider.GetService<ISettingsService>();
-            var settingsService = serviceProvider.GetService <FunAppContext>();
-            Console.WriteLine($"Count of users: {settingsService.Users.Count()}");
-            Console.WriteLine(sw.Elapsed);
-            return 0;
+            var webClient = new WebClient() {Encoding = Encoding.GetEncoding(1251)};
+            var parser = new HtmlParser();
+            
+            for (int i = 6741; i < 10000; i++)
+            {
+                var context = serviceProvider.GetService<FunAppContext>();
+
+                var address = "http://fun.dir.bg/vic_open.php?id=" + i;
+                var html = webClient.DownloadString(address);
+                var document = parser.Parse(html);
+
+                if (document.QuerySelector("#newsbody") == null)
+                {
+                    
+                    continue;
+                }
+
+                var content = document.QuerySelector("#newsbody")?.TextContent.Trim();
+                var categoryName = document.QuerySelector(".tag-links-left a")?.TextContent.Trim();
+
+                if (!string.IsNullOrEmpty(content) && !string.IsNullOrEmpty(categoryName))
+                {
+                    var category = context.Categories.FirstOrDefault(c => c.Name.Equals(categoryName));
+                    
+                    if (category == null)
+                    {
+                       category = new Category
+                       {
+                           Name = categoryName
+                       };
+                    }
+                    
+                    var joke = new Joke
+                    {
+                        Category = category,
+                        Content = content
+                    };
+
+                    context.Jokes.Add(joke);
+                    context.SaveChanges();
+                    Console.WriteLine($"{i} => {categoryName}");
+                }
+            }
         }
 
         private static void ConfigureServices(ServiceCollection services)
