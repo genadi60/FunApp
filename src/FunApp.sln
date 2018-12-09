@@ -13,21 +13,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Data.Models", "Data\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6D53998B-D715-46C1-A059-450DD3FECBBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Tests\Sandbox\Sandbox.csproj", "{F06B4619-15CA-4E21-BCA3-7488B173F2D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Tests\Sandbox\Sandbox.csproj", "{F06B4619-15CA-4E21-BCA3-7488B173F2D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{54670BBF-1D8D-48B3-BC1F-369C61B30BD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services", "Services\FunApp.Services\FunApp.Services.csproj", "{4E974314-0748-4FD8-BEE0-F1E84FF4846B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Models", "Services\FunApp.Services\FunApp.Services.Models.csproj", "{4E974314-0748-4FD8-BEE0-F1E84FF4846B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Data", "Services\FunApp.Services.Data\FunApp.Services.Data.csproj", "{42695839-C2D1-4C2A-A904-C678C93EA8A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.DataServices", "Services\FunApp.Services.Data\FunApp.Services.DataServices.csproj", "{42695839-C2D1-4C2A-A904-C678C93EA8A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Messaging", "Services\FunApp.Services.Messaging\FunApp.Services.Messaging.csproj", "{5DB66D60-67EE-40E5-A051-3990FAB2C9EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Messaging", "Services\FunApp.Services.Messaging\FunApp.Services.Messaging.csproj", "{5DB66D60-67EE-40E5-A051-3990FAB2C9EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Mapping", "Services\FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{9B077E4E-6C6A-44BA-B860-9A9423DFF4D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Mapping", "Services\FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{9B077E4E-6C6A-44BA-B860-9A9423DFF4D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Data.Common", "Data\Common\FunApp.Data.Common\FunApp.Data.Common.csproj", "{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Data.Common", "Data\Common\FunApp.Data.Common\FunApp.Data.Common.csproj", "{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Common", "Common\FunApp.Common\FunApp.Common.csproj", "{625176CC-C21D-4AB0-A7F8-9FE3180E1142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Common", "Common\FunApp.Common\FunApp.Common.csproj", "{625176CC-C21D-4AB0-A7F8-9FE3180E1142}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
