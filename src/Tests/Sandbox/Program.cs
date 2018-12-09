@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using AngleSharp;
 using AngleSharp.Parser.Html;
 using CommandLine;
 using FunApp.Data;
+using FunApp.Data.Common;
 using FunApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,17 +54,36 @@ namespace Sandbox
             var webClient = new WebClient() {Encoding = Encoding.GetEncoding(1251)};
             var parser = new HtmlParser();
             
-            for (int i = 6741; i < 10000; i++)
+            for (int i = 9815; i < 10000; i++)
             {
                 var context = serviceProvider.GetService<FunAppContext>();
 
                 var address = "http://fun.dir.bg/vic_open.php?id=" + i;
-                var html = webClient.DownloadString(address);
+
+                string html = null;
+
+                for (int j = 0; j < 10; j++)
+                {
+                    try
+                    {
+                        html = webClient.DownloadString(address);
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(10000);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(html))
+                {
+                    continue;
+                }
+
                 var document = parser.Parse(html);
 
                 if (document.QuerySelector("#newsbody") == null)
                 {
-                    
                     continue;
                 }
 
@@ -120,18 +141,18 @@ namespace Sandbox
                     options.Password.RequiredLength = 6;
                 })
                 .AddEntityFrameworkStores<FunAppContext>();
-        ////        .AddUserStore<FunAppUserStore>()
-        ////        .AddRoleStore<FunAppRoleStore>()
-        ////        .AddDefaultTokenProviders();
-        ////
-        ////    services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-        ////    services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-        ////    services.AddScoped<IDbQueryRunner, DbQueryRunner>();
-        ////
-        ////    // Application services
-        ////    services.AddTransient<IEmailSender, NullMessageSender>();
-        ////    services.AddTransient<ISmsSender, NullMessageSender>();
-        ////    services.AddTransient<ISettingsService, SettingsService>();
+            ////        .AddUserStore<FunAppUserStore>()
+            ////        .AddRoleStore<FunAppRoleStore>()
+            ////        .AddDefaultTokenProviders();
+            ////
+            ////    services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            ////    services.AddScoped<IDbQueryRunner, DbQueryRunner>();
+            ////
+            ////    // Application services
+            ////    services.AddTransient<IEmailSender, NullMessageSender>();
+            ////    services.AddTransient<ISmsSender, NullMessageSender>();
+            ////    services.AddTransient<ISettingsService, SettingsService>();
         }
     }
 }
