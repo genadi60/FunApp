@@ -15,5 +15,9 @@ namespace FunApp.Services.DataServices
         Task<int> Create(int categoryId, string content);
 
         DetailsViewModel Details(int id);
+
+        JokeViewModel ById(int id);
+
+        Task<int> Edit(JokeViewModel model);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using FunApp.Services.DataServices;
+using FunApp.Services.Models.Joke;
 using FunApp.Web.Models.Joke;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,28 @@ namespace FunApp.Web.Controllers
             var detailsViewModel = _jokesService.Details(id);
 
             return View(detailsViewModel);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var jokeViewModel = _jokesService.ById(id);
+            ViewData["Categories"] = _categoriesService.GetAll()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                });
+
+            return View(jokeViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(JokeViewModel model)
+        {
+
+            var id = await _jokesService.Edit(model);
+
+            return RedirectToAction("Details", new { id = id });
         }
     }
 }

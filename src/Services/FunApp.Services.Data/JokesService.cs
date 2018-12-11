@@ -65,5 +65,30 @@ namespace FunApp.Services.DataServices
 
             return joke;
         }
+
+        public JokeViewModel ById(int id)
+        {
+            return _repository.All().Select(x => new JokeViewModel
+                {
+                    Id = x.Id,
+                    Content = x.Content,
+                    CategoryId = x.CategoryId,
+                    Category = x.Category
+                })
+                .FirstOrDefault(x => x.Id == id);
+        }
+
+        public async Task<int> Edit(JokeViewModel model)
+        {
+            var joke = _repository.All().FirstOrDefault(x => x.Id == model.Id);
+
+            joke.Content = model.Content;
+            joke.CategoryId = model.CategoryId;
+
+            _repository.Update(joke);
+            await  _repository.SaveChangesAsync();
+
+            return joke.Id;
+        }
     }
 }
