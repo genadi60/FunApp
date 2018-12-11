@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using FunApp.Data.Common;
 using FunApp.Data.Models;
 using FunApp.Services.Models.Home;
+using FunApp.Services.Models.Joke;
 
 namespace FunApp.Services.DataServices
 {
@@ -34,6 +36,34 @@ namespace FunApp.Services.DataServices
         public int GetCount()
         {
             return _repository.All().Count();
+        }
+
+        public async Task<int> Create(int categoryId, string content)
+        {
+            var joke = new Joke
+            {
+                CategoryId = categoryId,
+                Content = content
+            };
+
+            await _repository.AddAsync(joke);
+            await _repository.SaveChangesAsync();
+
+            return joke.Id;
+        }
+
+        public DetailsViewModel Details(int id)
+        {
+            var joke = _repository.All()
+                .Select(x => new DetailsViewModel
+                {
+                    Id = x.Id,
+                    Content = x.Content,
+                    CategoryName = x.Category.Name
+                })
+                .FirstOrDefault(x => x.Id == id);
+
+            return joke;
         }
     }
 }

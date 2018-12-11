@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
-using AngleSharp;
 using AngleSharp.Parser.Html;
-using CommandLine;
 using FunApp.Data;
 using FunApp.Data.Common;
 using FunApp.Data.Models;

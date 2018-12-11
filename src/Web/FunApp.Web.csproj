@@ -7,14 +7,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Data\FunApp.Data.Models\FunApp.Data.Models.csproj" />
     <ProjectReference Include="..\Data\FunApp.Data\FunApp.Data.csproj" />
     <ProjectReference Include="..\Services\FunApp.Services.Data\FunApp.Services.DataServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 
 </Project>

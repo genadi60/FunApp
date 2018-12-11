@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Linq;
 using System.Threading.Tasks;
 using FunApp.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -146,7 +149,7 @@ namespace FunApp.Web.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("FunnApp.Web"),
+                _urlEncoder.Encode("FunApp.Web"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
