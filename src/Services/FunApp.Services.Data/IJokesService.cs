@@ -19,5 +19,7 @@ namespace FunApp.Services.DataServices
         JokeViewModel ById(int id);
 
         Task<int> Edit(JokeViewModel model);
+
+        Task<bool> Delete(int id);
     }
 }

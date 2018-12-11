@@ -24,6 +24,7 @@ namespace FunApp.Services.DataServices
                 .OrderBy(j => Guid.NewGuid())
                 .Select(j => new IndexJokeViewModel
                 {
+                    Id = j.Id,
                     Content = j.Content,
                     CategoryName = j.Category.Name
                 })
@@ -89,6 +90,21 @@ namespace FunApp.Services.DataServices
             await  _repository.SaveChangesAsync();
 
             return joke.Id;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var joke = _repository.All().FirstOrDefault(x => x.Id == id);
+
+            if (joke == null)
+            {
+                return false;
+            }
+
+            _repository.Delete(joke);
+            await _repository.SaveChangesAsync();
+
+            return true;
         }
     }
 }

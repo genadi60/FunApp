@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FunApp.Services.DataServices;
 using FunApp.Services.Models.Joke;
@@ -72,6 +73,17 @@ namespace FunApp.Web.Controllers
             var id = await _jokesService.Edit(model);
 
             return RedirectToAction("Details", new { id = id });
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _jokesService.Delete(id);
+            if (!deleted)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
         }
     }
 }

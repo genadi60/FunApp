@@ -16,7 +16,10 @@
                 </div>
 
                 <ul class="list-group">
-                    <li class="list-group-item">@Model.IndexJokeViewModels.ElementAt(index).CategoryName</li>
+                    <li class="list-group-item">
+                        @Model.IndexJokeViewModels.ElementAt(index).CategoryName 
+                        <a asp-action="Details" asp-controller="Joke" asp-route-id="@Model.IndexJokeViewModels.ElementAt(index).Id" class="btn btn-default">Details</a>
+                    </li>
                 </ul>
             </div>
         }
