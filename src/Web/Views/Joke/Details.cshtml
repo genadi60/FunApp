@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.Content)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @Html.Raw(Model.HtmlContent)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)

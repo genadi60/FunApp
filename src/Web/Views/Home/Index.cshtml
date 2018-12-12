@@ -12,7 +12,7 @@
 
             <div class="panel panel-default col-lg-6">
                 <div class="panel-body">
-                    <p>@Model.IndexJokeViewModels.ElementAt(index).Content</p>
+                    <p>@Html.Raw(Model.IndexJokeViewModels.ElementAt(index).HtmlContent)</p>
                 </div>
 
                 <ul class="list-group">

@@ -6,7 +6,7 @@
 
     public interface ICategoriesService
     {
-        IEnumerable<IdAndNameViewModel> GetAll();
+        IEnumerable<CategoryIdAndNameViewModel> GetAll();
 
         bool IsCategoryIdValid(int id);
     }

@@ -1,8 +1,10 @@
-﻿namespace FunApp.Services.Models.Joke
+﻿using FunApp.Services.Mapping;
+
+namespace FunApp.Services.Models.Joke
 {
     using Data.Models;
 
-    public class JokeViewModel
+    public class JokeViewModel : IMapFrom<Joke>
     {
         public int Id { get; set; }
 

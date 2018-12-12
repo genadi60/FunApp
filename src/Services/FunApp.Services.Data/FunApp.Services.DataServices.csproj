@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\FunApp.Data.Models\FunApp.Data.Models.csproj" />
+    <ProjectReference Include="..\FunApp.Services.Mapping\FunApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\FunApp.Services.Messaging\FunApp.Services.Messaging.csproj" />
     <ProjectReference Include="..\FunApp.Services\FunApp.Services.Models.csproj" />
   </ItemGroup>
 

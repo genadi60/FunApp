@@ -28,7 +28,7 @@ namespace FunApp.Web.Controllers
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
-                    Text = x.Name
+                    Text = x.NameAndCount
                 });
             return View();
         }
@@ -60,7 +60,7 @@ namespace FunApp.Web.Controllers
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
-                    Text = x.Name
+                    Text = x.NameAndCount
                 });
 
             return View(jokeViewModel);

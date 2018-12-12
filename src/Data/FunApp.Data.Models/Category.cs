@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FunApp.Data.Common;
-
-namespace FunApp.Data.Models
+﻿namespace FunApp.Data.Models
 {
+    using System.Collections.Generic;
+
+    using Common;
+
     public class Category : BaseModel<int>
     {
         public string Name { get; set; }
+
+        public virtual IEnumerable<Joke> Jokes { get; set; } = new HashSet<Joke>();
     }
 }

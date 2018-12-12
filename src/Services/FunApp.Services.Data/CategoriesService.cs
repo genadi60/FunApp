@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FunApp.Data.Common;
 using FunApp.Data.Models;
+using FunApp.Services.Mapping;
 using FunApp.Services.Models;
 
 namespace FunApp.Services.DataServices
@@ -17,14 +18,9 @@ namespace FunApp.Services.DataServices
             _repository = repository;
         }
 
-        public IEnumerable<IdAndNameViewModel> GetAll()
+        public IEnumerable<CategoryIdAndNameViewModel> GetAll()
         {
-            return _repository.All().Select(c => new IdAndNameViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
-                .ToList();
+            return _repository.All().To<CategoryIdAndNameViewModel>().ToList();
         }
 
         public bool IsCategoryIdValid(int id)
