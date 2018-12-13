@@ -49,20 +49,12 @@ namespace FunApp.Services.DataServices
             return joke.Id;
         }
 
-        public DetailsViewModel Details(int id)
-        {
-            var joke = _repository.All()
-                .To<DetailsViewModel>()
-                .FirstOrDefault(x => x.Id == id);
-
-            return joke;
-        }
-
-        public JokeViewModel ById(int id)
+        public TViewModel ById<TViewModel>(int id)
         {
             return _repository.All()
-                .To<JokeViewModel>()
-                .FirstOrDefault(x => x.Id == id);
+                .Where(x => x.Id == id)
+                .To<TViewModel>()
+                .FirstOrDefault();
         }
 
         public async Task<int> Edit(JokeViewModel model)

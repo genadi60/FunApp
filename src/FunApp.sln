@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Web", "Web\FunApp.Web.csproj", "{7F603F14-81AD-45BA-849E-B0513C02C714}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Mapping", "Services\FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{9B077E4E-6C6A-44BA-B860-9A9423DFF4D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Data.Common", "Data\Common\FunApp.Data.Common\FunApp.Data.Common.csproj", "{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.MachineLearning", "Services\FunApp.Services.MachineLearning\FunApp.Services.MachineLearning.csproj", "{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{5DB66D60-67EE-40E5-A051-3990FAB2C9EB} = {54670BBF-1D8D-48B3-BC1F-369C61B30BD7}
 		{9B077E4E-6C6A-44BA-B860-9A9423DFF4D3} = {54670BBF-1D8D-48B3-BC1F-369C61B30BD7}
 		{FEADE08F-5E7E-4E6C-AED7-36139D9DFBA8} = {9E0CFC5A-2C78-4526-A105-ADA7A48E5BEC}
+		{2F3A991B-619C-4C0B-8D08-2FC0A21C8A67} = {54670BBF-1D8D-48B3-BC1F-369C61B30BD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53F62510-D43B-454E-8EB0-78E1B840A545}

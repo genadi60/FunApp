@@ -9,5 +9,7 @@
         IEnumerable<CategoryIdAndNameViewModel> GetAll();
 
         bool IsCategoryIdValid(int id);
+
+        int? GetCategoryId(string categoryName);
     }
 }

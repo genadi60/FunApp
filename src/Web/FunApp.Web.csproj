@@ -14,10 +14,18 @@
     <ProjectReference Include="..\Data\FunApp.Data.Models\FunApp.Data.Models.csproj" />
     <ProjectReference Include="..\Data\FunApp.Data\FunApp.Data.csproj" />
     <ProjectReference Include="..\Services\FunApp.Services.Data\FunApp.Services.DataServices.csproj" />
+    <ProjectReference Include="..\Services\FunApp.Services.MachineLearning\FunApp.Services.MachineLearning.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="MlModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MlModels\JokesCategoryModel.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

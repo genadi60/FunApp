@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FunApp.Services.DataServices;
+using FunApp.Services.MachineLearning;
 using FunApp.Services.Models.Joke;
 using FunApp.Web.Models.Joke;
 using Microsoft.AspNetCore.Authorization;
@@ -14,11 +15,13 @@ namespace FunApp.Web.Controllers
     {
         private readonly IJokesService _jokesService;
         private readonly ICategoriesService _categoriesService;
+        private readonly IJokesCategorizer _jokesCategorizer;
 
-        public JokeController(IJokesService jokesService, ICategoriesService categoriesService)
+        public JokeController(IJokesService jokesService, ICategoriesService categoriesService, IJokesCategorizer jokesCategorizer)
         {
             _jokesService = jokesService;
             _categoriesService = categoriesService;
+            _jokesCategorizer = jokesCategorizer;
         }
 
         [Authorize]
@@ -48,14 +51,14 @@ namespace FunApp.Web.Controllers
 
         public IActionResult Details(int id)
         {
-            var detailsViewModel = _jokesService.Details(id);
+            var detailsViewModel = _jokesService.ById<DetailsViewModel>(id);
 
             return View(detailsViewModel);
         }
 
         public IActionResult Edit(int id)
         {
-            var jokeViewModel = _jokesService.ById(id);
+            var jokeViewModel = _jokesService.ById<JokeViewModel>(id);
             ViewData["Categories"] = _categoriesService.GetAll()
                 .Select(x => new SelectListItem
                 {
@@ -84,6 +87,14 @@ namespace FunApp.Web.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public SuggestCategoryResult SuggestCategory(string joke)
+        {
+            var category = _jokesCategorizer.Categorize("MlModels/JokesCategoryModel.zip", joke);
+            var categoryId = _categoriesService.GetCategoryId(category);
+            return new SuggestCategoryResult{CategoryId = categoryId ?? 0, CategoryName = category};
         }
     }
 }

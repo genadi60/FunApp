@@ -1,21 +1,23 @@
-﻿using FunApp.Data;
-using FunApp.Data.Common;
-using FunApp.Data.Models;
-using FunApp.Services.DataServices;
-using FunApp.Services.Mapping;
-using FunApp.Services.Models.Home;
-using FunApp.Services.Models.Joke;
-using FunApp.Web.Models.Joke;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace FunApp.Web
+﻿namespace FunApp.Web
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using Data;
+    using Data.Common;
+    using Data.Models;
+    using Models.Joke;
+    using Services.DataServices;
+    using Services.MachineLearning;
+    using Services.Mapping;
+    using Services.Models.Home;
+    using Services.Models.Joke;
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -63,6 +65,7 @@ namespace FunApp.Web
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped<IJokesService, JokesService>();
             services.AddScoped<ICategoriesService, CategoriesService>();
+            services.AddScoped<IJokesCategorizer, JokesCategorizer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +93,10 @@ namespace FunApp.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
