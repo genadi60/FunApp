@@ -6,6 +6,7 @@ using FunApp.Data.Common;
 using FunApp.Data.Models;
 using FunApp.Services.Mapping;
 using FunApp.Services.Models;
+using FunApp.Services.Models.Category;
 
 namespace FunApp.Services.DataServices
 {
@@ -33,6 +34,11 @@ namespace FunApp.Services.DataServices
             var category = _repository.All().FirstOrDefault(c => c.Name == categoryName);
             var id = category?.Id;
             return id;
+        }
+
+        public IEnumerable<CategoryViewModel> GetAllViewModels()
+        {
+            return _repository.All().To<CategoryViewModel>();
         }
     }
 }

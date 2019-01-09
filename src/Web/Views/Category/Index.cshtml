@@ -1,0 +1,15 @@
+﻿@model FunApp.Services.Models.Category.AllCategoriesViewModel
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@{
+    var categories = Model.Categories;
+    ViewData["Title"] = "Categories";
+}
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div>
+    @for (var index = 0; index < categories.Count(); index++)
+    {
+        <a asp-action="Details" asp-controller="Category" asp-route-id="@categories.ElementAt(index).Id" class="btn btn-outline-secondary">@categories.ElementAt(index).Name</a>
+    }
+</div>
+@Html.PagedListPager((IPagedList)categories, page => Url.Action("Index", "Category", new { page }))

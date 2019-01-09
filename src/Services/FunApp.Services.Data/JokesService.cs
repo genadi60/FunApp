@@ -57,6 +57,13 @@ namespace FunApp.Services.DataServices
                 .FirstOrDefault();
         }
 
+        public IEnumerable<TViewModel> ByCategory<TViewModel>(int id)
+        {
+            return _repository.All()
+                .Where(x => x.CategoryId == id)
+                .To<TViewModel>();
+        }
+
         public async Task<int> Edit(JokeViewModel model)
         {
             var joke = _repository.All().FirstOrDefault(x => x.Id == model.Id);

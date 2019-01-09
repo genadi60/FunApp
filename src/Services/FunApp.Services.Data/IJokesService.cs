@@ -16,6 +16,8 @@ namespace FunApp.Services.DataServices
 
         TViewModel ById<TViewModel>(int id);
 
+        IEnumerable<TViewModel> ByCategory<TViewModel>(int id);
+
         Task<int> Edit(JokeViewModel model);
 
         Task<bool> Delete(int id);

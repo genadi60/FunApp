@@ -1,0 +1,25 @@
+﻿@model FunApp.Services.Models.Joke.JokesByCategoryDetailsViewModel
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@{
+    var jokes = Model.Jokes;
+    ViewData["Title"] = "Category: " + Model.Name;
+}
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div>
+    @for (var index = 0; index < jokes.Count(); index++)
+    {
+        <div class="panel panel-default col-lg-6">
+            <div class="panel-body">
+                <p>@Html.Raw(jokes.ElementAt(index).HtmlContent)</p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    @jokes.ElementAt(index).CategoryName
+                    <a asp-action="Details" asp-controller="Joke" asp-route-id="@jokes.ElementAt(index).Id" class="btn btn-default">Details</a>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+@Html.PagedListPager((IPagedList)jokes, page => Url.Action("Details", "Category", new { page }))

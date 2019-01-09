@@ -5,7 +5,7 @@ using FunApp.Services.Mapping;
 
 namespace FunApp.Services.Models
 {
-    public class CategoryIdAndNameViewModel : IMapFrom<Category>, IHaveCustomMappings
+    public class CategoryIdAndNameViewModel : IMapFrom<Data.Models.Category>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace FunApp.Services.Models
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Category, CategoryIdAndNameViewModel>()
+            configuration.CreateMap<Data.Models.Category, CategoryIdAndNameViewModel>()
                 .ForMember(x => x.AllJokesCount, m => m.MapFrom(c => c.Jokes.Count()));
         }
     }
